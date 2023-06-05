@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "155912401906",
+    "project_id": "expoproj-cb250",
+    "storage_bucket": "expoproj-cb250.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155912401906:android:be55f94fd06406df08716b",
+        "android_client_info": {
+          "package_name": "com.reeler.expoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155912401906-davg791gq0ai16va3thn95ajhd2km31l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reeler.expoapp",
+            "certificate_hash": "4668c64536d586ec08e3204035c57e1cd230ea62"
+          }
+        },
+        {
+          "client_id": "155912401906-3om3mvmh2qmeq7e5f3802gktv28u6u2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa6dTkqupw2afxFGD3Dr4iPqUoz8A8-Io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "155912401906-3om3mvmh2qmeq7e5f3802gktv28u6u2a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
