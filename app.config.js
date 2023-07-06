@@ -7,7 +7,6 @@ export default {
     version: '1.0.0',
     orientation: 'portrait',
     icon: './assets/images/icon.png',
-    'android.icon': './assets/images/android-icon.png',
     scheme: 'myapp',
     userInterfaceStyle: 'automatic',
     splash: {
@@ -15,12 +14,21 @@ export default {
       resizeMode: 'contain',
       backgroundColor: '#ffffff',
     },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Reeler to access your camera."
+        }
+      ]
+    ],
     assetBundlePatterns: ['**/*'],
     ios: {
       supportsTablet: true,
     },
     android: {
       package: 'com.reeler.expoapp',
+      icon: './assets/images/android-icon.png',
       versionCode: 1,
       adaptiveIcon: {
         foregroundImage: './assets/images/android-icon.png',
@@ -38,6 +46,6 @@ export default {
       firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
       firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
       firebaseAppId: process.env.FIREBASE_APP_ID
-    }
+    },
   },
 };

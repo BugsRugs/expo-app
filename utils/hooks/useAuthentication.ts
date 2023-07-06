@@ -1,5 +1,7 @@
 import React from 'react';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { Text } from 'react-native';
+import { View } from 'react-native';
 
 const auth = getAuth();
 
@@ -17,11 +19,10 @@ export function useAuthentication() {
         setUser(undefined);
       }
     });
-
     return unsubscribeFromAuthStatuChanged;
   }, []);
 
   return {
     user
   };
-}
+};

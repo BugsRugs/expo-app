@@ -1,12 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, LogBox } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { StackScreenProps } from '@react-navigation/stack';
+import { CommonActions } from '@react-navigation/native';
+// import UserStack from '../../navigation/userStack';
+// import AuthStack from '../../navigation/authStack';
+
+LogBox.ignoreLogs(['The action \'NAVIGATE\' with payload {"name":"Reeler"} was not handled by any navigator']);
 
 const auth = getAuth();
 
-const SignInScreen = () => {
+const SignInScreen: React.FC<StackScreenProps<any>> = ({ navigation }) => {
   const [value, setValue] = React.useState({
     email: '',
     password: '',
@@ -24,19 +30,26 @@ const SignInScreen = () => {
 
     try {
       await signInWithEmailAndPassword(auth, value.email, value.password);
+      const user = auth.currentUser;
+      if (user) {
+        navigation.navigate('Reeler');
+      } else {
+        navigation.navigate('Sign Up')
+      }
     } catch (error) {
       setValue({
         ...value,
-        error: 'error with signin screen', //error.message,
+        error: error.message,
       })
     }
   }
 
   return (
     <View style={styles.container}>
-      <Text>Signin screen!</Text>
-
-      {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
+      {!!value.error ? <View style={styles.error}>
+        <Text>{value.error}</Text>
+        </View>
+        : null}
 
       <View style={styles.controls}>
         <Input
@@ -73,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    //alignItems: 'center',
     justifyContent: 'center',
   },
 

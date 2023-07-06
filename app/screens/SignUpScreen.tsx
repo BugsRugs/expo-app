@@ -4,10 +4,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { StackScreenProps } from '@react-navigation/stack';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-
-const auth = getAuth();
+import { User } from 'firebase/auth';
 
 const SignUpScreen: React.FC<StackScreenProps<any>> = ({ navigation }) => {
+
+  const auth = getAuth();
+
   const [value, setValue] = React.useState({
     email: '',
     password: '',
@@ -22,22 +24,25 @@ const SignUpScreen: React.FC<StackScreenProps<any>> = ({ navigation }) => {
       })
       return;
     }
-
     try {
-      await createUserWithEmailAndPassword(auth, value.email, value.password);
+      //await createUserWithEmailAndPassword(auth, value.email, value.password);
+      const userCredential = await createUserWithEmailAndPassword(auth, value.email, value.password);
       navigation.navigate('Sign In');
     } catch (error) {
       setValue({
-      ...value,
-      error: 'Error message in SignUpScreen', //error.message,
-    })
+        ...value,
+        error: error.message,
+      })
     }
   }
 
   return (
     <View style={styles.container}>
 
-      {!!value.error && <View style={styles.error}><Text>{value.error}</Text></View>}
+      {!!value.error ? <View style={styles.error}>
+        <Text>{value.error}</Text>
+        </View>
+        : null}
 
       <View style={styles.controls}>
         <Input
@@ -63,7 +68,7 @@ const SignUpScreen: React.FC<StackScreenProps<any>> = ({ navigation }) => {
           />}
         />
 
-        <Button title="Sign up" buttonStyle={styles.control} onPress={signUp} />
+        <Button title="Sign up" buttonStyle={styles.control} onPress={signUp}/>
       </View>
     </View>
   );
@@ -73,7 +78,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
-    backgroundColor: '#FF0000',
+    backgroundColor: '#FFF',
     //alignItems: 'flex-end',
     justifyContent: 'space-evenly',
   },
