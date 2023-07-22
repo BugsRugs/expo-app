@@ -1,10 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import * as Location from 'expo-location';
-
+//import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getLocation, storeLocation, retrieveLocation } from '../utils/hooks/locationUtils';
 
 const LocationComponent = () => {
   const [location, setLocation] = useState(null);
+
+  ///////////////////////////////////
+  useEffect(() => {
+    fetchLocation();
+  }, []);
+
+  const fetchLocation = async () => {
+    try {
+      const location = await getLocation();
+      await storeLocation(location);
+      const storedLocation = await retrieveLocation();
+      console.log('Stored Location:', storedLocation);
+    } catch (error) {
+      console.log('Error fetching location:', error);
+    }
+  };
+  ///////////////////////////////////
 
   useEffect(() => {
     // Request permission to access the user's location
@@ -19,6 +37,8 @@ const LocationComponent = () => {
       const location = await Location.getCurrentPositionAsync({});
       const address = await Location.reverseGeocodeAsync(location.coords);
       setLocation(address);
+      storeLocation(address);
+
     })();
   }, []);
 

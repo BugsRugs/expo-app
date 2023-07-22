@@ -6,6 +6,8 @@ import ProfileScreen from './ProfileScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import PostScreen from './PostScreen';
 import CreatePostScreen from './CreatePostScreen';
+import CameraFunction from '../../components/Camera';
+import styles from '../../assets/styles';
 
 function OrderScreen() {
   return (
@@ -46,15 +48,21 @@ function PostsStackNavigator() {
   return (
     <Stack.Navigator initialRouteName='Posts'>
       <Stack.Screen name="Posts" component={PostScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Create Post" component={CreatePostScreen} />
+      <Stack.Screen name="Create Post" component={CreatePostScreen} options={{ headerTitle: '' }} />
+      <Stack.Screen name="CameraFunction" component={CameraFunction} />
     </Stack.Navigator>
   );
 }
 
 function MyTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Post" component={PostsStackNavigator} options={{ headerShown: false }} />
+    <Tab.Navigator screenOptions={{
+        headerShown: false,
+        tabBarStyle: { backgroundColor: 'white' }, // Set the background color for the tab bar
+        tabBarActiveTintColor: styles.logoColorBlue.color, // Set the active tab color
+        tabBarInactiveTintColor: 'gray', // Set the inactive tab color
+      }}>
+      <Tab.Screen name="Post" component={PostsStackNavigator} options={{ headerShown: false, }} />
       <Tab.Screen name="Orders" component={OrderScreen} options={{ headerShown: false }} />
       <Tab.Screen name="About" component={AboutScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Messages" component={MessageScreen} options={{ headerShown: false }} />

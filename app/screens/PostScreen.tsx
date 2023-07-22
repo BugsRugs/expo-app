@@ -3,6 +3,7 @@ import LocationComponent from "../../components/LocationComponent";
 import styles from "../../assets/styles";
 import { StackScreenProps } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import DisplayPostsScreen from "./DisplayPostsScreen";
 
 export default function PostScreen() {
  
@@ -13,11 +14,13 @@ export default function PostScreen() {
  }
 
   return (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+    <SafeAreaView style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', backgroundColor: '#fff' }}>
       <View style={{flex: 1, top: 10, alignItems: 'center', justifyContent: 'flex-start'}}><LocationComponent/></View>
+      <DisplayPostsScreen />
       <TouchableOpacity onPress={postButton} style={styles.postButton}>
        <Text style={styles.postText}>Create a Post</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 }
+ 

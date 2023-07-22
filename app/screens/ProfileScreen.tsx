@@ -39,8 +39,6 @@ const ProfileScreen = () => {
   const pathReference = ref(storage, '/profilePictures/'.concat(uid));
 
   const pic = getBlob(pathReference);
-  console.log('Blob is succesfully downloaded', pic != null);
-  console.log(pic.uri);
 
   const handleSave = () => {
     const userId = user.uid;
@@ -198,12 +196,15 @@ const ProfileScreen = () => {
                 placeholder="Phone Number"
                 style={styles.input}
               />
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text>Receive Emails</Text>
               <Switch
                 value={emailEnabled == null ? (true) : (emailEnabled)}
                 trackColor={{false: '#ffffff', true: '#4ADEDE'}}
                 thumbColor={emailEnabled ? '#2A9DF4' : '#2A9DF4'}
                 onValueChange={setEmailEnabled}
               />
+              </View>
               <Button title="Save" onPress={handleSave} />
             </View>
           ) : (
