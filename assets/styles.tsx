@@ -59,6 +59,37 @@ const styles = StyleSheet.create({
    fontFamily: 'Arial',
    color: 'black'
   },
+  titleText: {
+   fontSize: 16,
+   fontFamily: 'Arial',
+   color: 'black',
+   fontWeight: 'bold'
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // marginTop: 10,
+    // marginBottom: 10,
+  },
+  textInput2: {
+    backgroundColor: '#EFEFEF',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginBottom: 10,
+    width: '80%',
+  },
+  saveButton: {
+    backgroundColor: '#40E0D0',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  saveButtonText: {
+    color: 'white',
+    fontSize: 16,
+  },
   reelerColor: {
    color: '#69AEB5',
   },

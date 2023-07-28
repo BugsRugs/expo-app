@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import moment from 'moment';
+import styles from '../assets/styles';
 
 const TimePicker = ({ onSave }) => {
   const [availability, setAvailability] = useState(['', '', '']);
@@ -24,12 +25,12 @@ const TimePicker = ({ onSave }) => {
     <View style={styles.container}>
       {availability.map((value, index) => (
         <View key={index}>
-          <Text style={styles.title}>Availability for {getDayOfWeek(index)}</Text>
+          <Text style={styles.titleText}>Availability for {getDayOfWeek(index)}</Text>
           <TextInput
             value={value}
             onChangeText={(text) => handleAvailabilityChange(index, text)}
             placeholder="Enter availability..."
-            style={styles.textInput}
+            style={styles.textInput2}
           />
         </View>
       ))}
@@ -40,36 +41,6 @@ const TimePicker = ({ onSave }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  textInput: {
-    backgroundColor: '#EFEFEF',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginBottom: 10,
-    width: '80%',
-  },
-  saveButton: {
-    backgroundColor: '#40E0D0',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  saveButtonText: {
-    color: 'white',
-    fontSize: 16,
-  },
-});
 
 export default TimePicker;
 

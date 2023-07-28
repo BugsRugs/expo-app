@@ -16,9 +16,14 @@ export default {
     },
     "plugins": [
       [
-        "expo-camera",
+        // "expo-camera",
+        // {
+        //   "cameraPermission": "Allow Reeler to access your camera."
+        // },
+        "expo-image-picker",
         {
-          "cameraPermission": "Allow Reeler to access your camera."
+          "photosPermission": "Allow $(Reeler) to access your photo gallery.",
+          "cameraPermission": "Allow $(Reeler) to access your camera.",
         }
       ]
     ],

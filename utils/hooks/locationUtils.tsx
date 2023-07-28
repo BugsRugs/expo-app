@@ -35,3 +35,21 @@ export const retrieveLocation = async () => {
     throw error;
   }
 };
+
+export const storePostImage = async (value) => {
+  try {
+    const jsonValue = JSON.stringify(value);
+    await AsyncStorage.setItem('postPictures', jsonValue);
+  } catch (e) {
+    console.log('error storing post picture in cache', error);
+  }
+};
+
+export const retrievePostImage = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('postPictures');
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    console.log('error retrieving post picture in cache', error);
+  }
+};

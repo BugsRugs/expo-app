@@ -8,7 +8,9 @@ import "firebase/firestore";
 // import {...} from "firebase/functions";
 import { getStorage } from "firebase/storage";
 import firebase from 'firebase/compat/app'
-import 'firebase/compat/storage'
+//import 'firebase/compat/storage'
+
+//import firebase from 'expo-firebase-app';
 
 
 //Initialize Firebase
@@ -37,5 +39,6 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 const storage = getStorage(app);
+
 
 export default {app, auth, firebase};

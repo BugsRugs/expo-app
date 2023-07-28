@@ -17,7 +17,7 @@ const LocationComponent = () => {
       const location = await getLocation();
       await storeLocation(location);
       const storedLocation = await retrieveLocation();
-      console.log('Stored Location:', storedLocation);
+      //console.log('Stored Location:', storedLocation);
     } catch (error) {
       console.log('Error fetching location:', error);
     }

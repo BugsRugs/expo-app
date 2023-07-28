@@ -15,7 +15,9 @@ const storage = getStorage();
 
 // Create a storage reference from our storage service
 const storageRef = ref(storage);
-
+// const imageRef = ref(storage, '/profilePictures/'.concat(uid));
+// const downloadURL = getBlob(imageRef);
+// console.log('in profile the download is', downloadURL);
 
 
 const ProfileScreen = () => {
@@ -39,6 +41,7 @@ const ProfileScreen = () => {
   const pathReference = ref(storage, '/profilePictures/'.concat(uid));
 
   const pic = getBlob(pathReference);
+
 
   const handleSave = () => {
     const userId = user.uid;
@@ -96,10 +99,13 @@ const ProfileScreen = () => {
   }
 
 
-  useEffect(() => {
+  useEffect( () => {
     const userId = uid;
     const db = getFirestore(app);
     const userRef = doc(db, 'users', userId);
+
+    
+    // console.log('the download url in ProfileScreen is', downloadURL);
 
     getDoc(userRef).then((doc) => {
       if (doc.exists()) {
@@ -114,7 +120,8 @@ const ProfileScreen = () => {
         setZipcode(userData.zipcode);
         setEmail(userData.email);
         setPhoneNumber(userData.phoneNumber);
-        setProfilePicture(userData.profilePicture);
+        //setProfilePicture(userData.profilePicture);
+        //setProfilePicture(downloadURL);
         setEmailEnabled(userData.emailEnabled);
       } else {
         console.log('No such user!');
@@ -130,9 +137,10 @@ const ProfileScreen = () => {
         <View>
           {user ? (
             <View>
+              {/* <ImagePickerFunction /> */}
               <ImagePickerFunction />
-              {/* {profilePictureUrl ? (
-        <Image source={{ uri: profilePictureUrl }} style={{ width: 200, height: 200 }} />
+              {/* {profilePicture ? (
+        <Image source={{ uri: profilePicture }} style={{ width: 200, height: 200 }} />
       ) : (
         <Text>No profile picture available</Text>
       )} */}
@@ -244,3 +252,4 @@ const styles = StyleSheet.create({
 });
 
 export default ProfileScreen;
+

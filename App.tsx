@@ -45,13 +45,13 @@ const App: React.FC = () => {
     }, 1000); // Delay of 2000 milliseconds (2 seconds) in this example
   }, []);
 
-  if (isSplashVisible) {
-    return (
-      <View>
-        <SplashScreen />
-      </View>
-    );
-  }
+  // if (isSplashVisible) {
+  //   return (
+  //     <View>
+  //       <SplashScreen />
+  //     </View>
+  //   );
+  // }
 
   return (
     // <FontLoader>
