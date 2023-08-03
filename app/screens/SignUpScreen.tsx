@@ -6,6 +6,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { User } from 'firebase/auth';
 
+import PhoneAuth from '../../authentication/PhoneAuth';
+
 const SignUpScreen: React.FC<StackScreenProps<any>> = ({ navigation }) => {
 
   const auth = getAuth();
@@ -69,6 +71,7 @@ const SignUpScreen: React.FC<StackScreenProps<any>> = ({ navigation }) => {
         />
 
         <Button title="Sign up" buttonStyle={styles.control} onPress={signUp}/>
+        <PhoneAuth />
       </View>
     </View>
   );

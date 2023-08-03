@@ -1,16 +1,9 @@
 import { initializeApp } from 'firebase/app';
-import Constants from 'expo-constants';
-// Optionally import the services that you want to use
 import { getAuth } from "firebase/auth";
 import 'firebase/auth';
-// import {...} from "firebase/database";
 import "firebase/firestore";
-// import {...} from "firebase/functions";
 import { getStorage } from "firebase/storage";
-import firebase from 'firebase/compat/app'
-//import 'firebase/compat/storage'
-
-//import firebase from 'expo-firebase-app';
+import firebase from 'firebase/app';
 
 
 //Initialize Firebase
@@ -41,4 +34,4 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 
 
-export default {app, auth, firebase};
+export default { auth, app, storage, firebaseConfig };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import * as Location from 'expo-location';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from '../assets/styles';
 import { getLocation, storeLocation, retrieveLocation } from '../utils/hooks/locationUtils';
 
 const LocationComponent = () => {
@@ -43,13 +43,13 @@ const LocationComponent = () => {
   }, []);
 
   return (
-    <View>
+    <View style={{ marginTop: 10, justifyContent: 'center'}}>
       {location ? (
-        <Text>
-          The city is: {location[0].city}
+        <Text style={styles.postTextBold}>
+          Fish in {location[0].city}
         </Text>
       ) : (
-        <Text>Finding nearest city...</Text>
+        <Text style={styles.postText}>Finding nearest city...</Text>
       )}
     </View>
   );

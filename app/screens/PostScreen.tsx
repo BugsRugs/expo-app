@@ -3,7 +3,7 @@ import LocationComponent from "../../components/LocationComponent";
 import styles from "../../assets/styles";
 import { StackScreenProps } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import FetchPosts from "../../components/FetchPosts";
+import FetchScreen from "../../components/FetchPosts";
 
 export default function PostScreen() {
  
@@ -14,9 +14,22 @@ export default function PostScreen() {
  }
 
   return (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', backgroundColor: '#fff' }}>
-      <View style={{flex: 1, top: 10, alignItems: 'center', justifyContent: 'flex-start'}}><LocationComponent/></View>
-      {/* <FetchPosts /> */}
+    <SafeAreaView style={styles.postContainer}>
+      {/* <View style={styles.topContainer}>
+        <LocationComponent/>
+      </View>
+      <View style={styles.middleContainer}>
+        <FetchScreen />
+      </View> */}
+      {/* <View style={{flex: 1, justifyContent: 'center', padding: 10, backgroundColor: 'red', height: 20}}>
+        { <LocationComponent/> }
+      </View> */}
+      <View style={{flex: 1, marginTop: 10, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{padding: 10}}>
+          <LocationComponent />
+        </View>
+        {/* <FetchScreen /> */}
+      </View>
       <TouchableOpacity onPress={postButton} style={styles.postButton}>
        <Text style={styles.postText}>Create a Post</Text>
       </TouchableOpacity>

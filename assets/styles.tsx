@@ -7,6 +7,61 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  postContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    //justifyContent: 'space-evenly',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  imageContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 5,
+  },
+  postContainer2: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: '#fff4cf', //'#fcf7bd', cafcfc
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  topContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  middleContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //height: 50
+  },
+  postScreenText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
   basicImage: {
     width: 200,
     height: 200,
@@ -59,6 +114,18 @@ const styles = StyleSheet.create({
    fontFamily: 'Arial',
    color: 'black'
   },
+  postTextBold: {
+   fontSize: 16,
+   fontFamily: 'Arial',
+   color: '#50AEB6',
+   fontWeight: 'bold',
+  },
+  postTextBold2: {
+   fontSize: 16,
+   fontFamily: 'Arial',
+   color: 'black',
+   fontWeight: 'bold',
+  },
   titleText: {
    fontSize: 16,
    fontFamily: 'Arial',
@@ -71,6 +138,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // marginTop: 10,
     // marginBottom: 10,
+  },
+  signButton: {
+    margin: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  signButton2: {
+    //marginHorizontal: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textInput2: {
     backgroundColor: '#EFEFEF',

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Text, View, TextInput, StyleSheet, ScrollView, SafeAreaView, Image, Switch } from 'react-native';
+import { Button, Text, View, TextInput, StyleSheet, ScrollView, SafeAreaView, Image, Switch, Alert } from 'react-native';
 import { useAuthentication } from '../../utils/hooks/useAuthentication';
 import { StackScreenProps } from '@react-navigation/stack';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import { uid } from '../../authentication/auth_state_listener';
 import { app } from '../../firebaseConfig';
+import auth from '../../firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
 import ImagePickerFunction from '../../components/ImagePicker';
 import { getStorage, ref, getDownloadURL, uploadBytes, getBlob, getBytes } from "firebase/storage";
-import firebase from 'firebase/compat';
+import firebase from 'firebase/app';
+import { getAuth, signOut } from 'firebase/auth';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
 const storage = getStorage();
@@ -19,6 +22,32 @@ const storageRef = ref(storage);
 // const downloadURL = getBlob(imageRef);
 // console.log('in profile the download is', downloadURL);
 
+
+const signOutFunction = () => {
+  Alert.alert(
+      'Log Out',
+      'Are you sure you want to log out of your Reeler account?',
+      [
+        {
+          text: 'Cancel',
+          // onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => {
+            const a = getAuth();
+            signOut(a).then(() => {
+              console.log('successfully signed out');
+            }).catch((error) => {
+              console.log('error signing out: ', error);
+            });
+          },
+        },
+      ],
+      { cancelable: true }
+    );
+}
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -47,38 +76,6 @@ const ProfileScreen = () => {
     const userId = user.uid;
     const db = getFirestore(app);
     const userRef = doc(db, 'users', userId);
-
-    // if(profilePicture){
-    //     const storageRef = ref(storage, `users/${user.uid}/profilePicture.jpg`);
-    //     // The function below will upload the user's profile picture in Firebase Storage
-    //     uploadBytes(storageRef, profilePicture);
-    //     // After you upload the profile picture, you can get the download URL and set it as the profilePicture in Firestore
-    //     getDownloadURL(storageRef)
-    //       .then((downloadURL) => {
-    //         setDoc(userRef, {
-    //           name: name || 'Default Name',
-    //           age: age || 'Default Age',
-    //           bio: bio || 'Default Bio',
-    //           city: city || 'Default City',
-    //           county: county || 'Default County',
-    //           state: state || 'Default State',
-    //           street: street || 'Default Street',
-    //           zipcode: zipcode || 'Default Zipcode',
-    //           email: email || 'Default Email',
-    //           phoneNumber: phoneNumber || 'Default Phone Number',
-    //           profilePicture: downloadURL
-    //         })
-    //           .then(() => {
-    //             console.log('User profile saved!');
-    //           })
-    //           .catch((error) => {
-    //             console.error('Error saving user profile: ', error);
-    //           });
-    //       })
-    //       .catch((error) => {
-    //         console.error('Error getting download URL from Firebase Storage: ', error);
-    //       });
-    // } else {
       setDoc(userRef, {
         name: name || 'Default Name',
         age: age || 'Default Age',
@@ -95,7 +92,6 @@ const ProfileScreen = () => {
         .then(() => {
           console.log('User profile saved');
         })
-    //};
   }
 
 
@@ -137,13 +133,7 @@ const ProfileScreen = () => {
         <View>
           {user ? (
             <View>
-              {/* <ImagePickerFunction /> */}
               <ImagePickerFunction />
-              {/* {profilePicture ? (
-        <Image source={{ uri: profilePicture }} style={{ width: 200, height: 200 }} />
-      ) : (
-        <Text>No profile picture available</Text>
-      )} */}
               <TextInput
                 value={name}
                 onChangeText={setName}
@@ -204,6 +194,11 @@ const ProfileScreen = () => {
                 placeholder="Phone Number"
                 style={styles.input}
               />
+              <View style={{}}>
+                <TouchableOpacity style={{flex: 1, margin: 10}}>  
+                  <Text style={{color: 'black', fontSize: 16}} >Add Phone number to make future log in's easier and more secure</Text>
+                </TouchableOpacity>
+              </View>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text>Receive Emails</Text>
               <Switch
@@ -213,7 +208,15 @@ const ProfileScreen = () => {
                 onValueChange={setEmailEnabled}
               />
               </View>
-              <Button title="Save" onPress={handleSave} />
+              
+              <View style={{flexDirection: 'row',  margin: 10, }}> 
+                <TouchableOpacity onPress={signOutFunction} style={{margin: 10}}>  
+                  <Text style={{color: 'red', fontSize: 20}} >Sign Out</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleSave} style={{margin: 10}}>  
+                  <Text style={{color: 'green', fontSize: 20}} >Save</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           ) : (
             <Text>Please log in to see your profile.</Text>
