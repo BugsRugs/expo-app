@@ -19,9 +19,7 @@ Features
     Search for specific seafood items.
     View detailed product information, including price, quantity, and origin.
     Add items to the cart and place orders securely.
-    Set up user profiles with shipping and payment details.
-    Real-time updates on order status and shipment tracking.
-    Vendor dashboard for managing products and inventory.
+    Set up user profiles with personal location and fishing details.
     Secure authentication and user authorization.
 
 Usage
